@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {List, ListItem} from 'material-ui';
+import {List, ListItem, FlatButton} from 'material-ui';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
@@ -15,19 +15,20 @@ export default class MultiSelectList extends Component {
 		return {muiTheme: getMuiTheme(baseTheme)};
 	}
 
+	handleItemClick(event, index, value) {
+		console.log('click');
+	}
+
 	render() {
 		const listItems = this.props.itemList.map((item, index) => 
-				<ListItem
-					value={item.value} 
-					primaryText={item.value} 
-					key={index} 
-					style={{float: 'left', display: 'inline-block'}}/>
+				<FlatButton 
+					label={item.value}
+					key={index}
+					onClick={this.handleItemClick.bind(this)} />
 			)
 		return(
 			<div>
-				<List style={{width: '100px'}}>
 					{listItems}
-				</List>
 			</div>
 		)
 	}
